@@ -1,0 +1,26 @@
+{
+  "name": "mcp-app-selfplay-chart",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MCP App server: interactive bits-per-byte chart from a self-play pretraining CPU experiment",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node server.mjs",
+    "test": "node test-client.mjs",
+    "start:remote": "node server-http.mjs",
+    "test:remote": "node test-http.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^2.0.0",
+    "@modelcontextprotocol/node": "^2.1.0",
+    "@modelcontextprotocol/server": "^2.0.0",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
