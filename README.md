@@ -42,3 +42,9 @@ Render Free web services spin down after 15 minutes idle and can take about one 
 - Render free-tier limits: https://render.com/docs/free
 
 `server-http.mjs` creates one MCP server per HTTP request with `createMcpHandler`. It allows only `/mcp` and `/healthz`, blocks browser Origin requests, and optionally validates `PUBLIC_HOSTNAME` if set. TLS termination belongs to the HTTPS host. The deployment is authless by design for public, non-private demo data. `server.mjs` remains the stdio entry point.
+
+## Cloudflare Workers deployment
+
+The `cloudflare/` subfolder is a standalone Worker implementation of the same MCP App. It bundles the prebuilt `dist/mcp-app.html` as a text module. From that folder, run `npm ci`, then `npm run dev` for a local `/mcp` endpoint and `npm run deploy` after signing in to Cloudflare. The live connector URL is the URL Wrangler returns with `/mcp` appended; check the actual URL rather than guessing the workers.dev subdomain. Cloudflare's stateless MCP handler needs no Durable Object or OAuth for this non-private demo chart. Its public endpoint is intentionally unauthenticated.
+
+The Cloudflare Worker has been smoke-tested locally for initialize, tools/list, resources/list, resources/read, tools/call, and rejection of an unrelated browser Origin. Live Cloudflare/Claude iOS use is unverified until deployed and tested.
